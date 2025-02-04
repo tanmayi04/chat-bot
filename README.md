@@ -1,6 +1,10 @@
 # chat-bot
 This is a simple AI-powered chatbot built using Streamlit and OpenAI's GPT models (gpt-3.5-turbo and gpt-4). The chatbot allows users to interact with the AI and maintains chat history within the session.
 
+Technology Used:
+1. streamlit- Streamlit is an open-source Python library that allows you to quickly build interactive web applications for machine learning, data visualization, and AI-powered tools using just Python.
+   
+
 Features
 1. Select between gpt-3.5-turbo and gpt-4.
 2. Enter an OpenAI API key securely.

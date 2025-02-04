@@ -1,8 +1,12 @@
 # chat-bot
 This is a simple AI-powered chatbot built using Streamlit and OpenAI's GPT models (gpt-3.5-turbo and gpt-4). The chatbot allows users to interact with the AI and maintains chat history within the session.
 
+
 Technology Used:
 1. streamlit- Streamlit is an open-source Python library that allows you to quickly build interactive web applications for machine learning, data visualization, and AI-powered tools using just Python.
+2. Python- The core programming language used for developing the application.
+3. OpenAI API (openai) - Used to access GPT models (gpt-3.5-turbo & gpt-4) for generating AI responses. Handles user queries and returns AI-generated responses.
+4. Session State (st.session_state)- A feature in Streamlit that maintains chat history across interactions.
    
 
 Features
@@ -11,6 +15,7 @@ Features
 3. Displays chat history dynamically.
 4. Simple UI using Streamlit.
 5. Supports real-time interaction.
+   
 
 Requirements:
 1. Install Dependencies

@@ -23,7 +23,10 @@ Make sure you have Python installed, then install the required libraries:
 command- pip install streamlit openai
 
 2. OpenAI API Key
-To use this chatbot, you need an OpenAI API key. Get one from "https://platform.openai.com/api-keys"
+To use GPT models, you need an OpenAI API key. Get one from "https://platform.openai.com/api-keys"
+
+3. Hugging-face API Key
+To use llama model, you need HF token. Get one from "https://huggingface.co/settings/tokens"
 
 Usage
 1. Run the Streamlit App

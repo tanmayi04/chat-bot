@@ -1,52 +1,77 @@
+import os
 import streamlit as st
 import openai
+from dotenv import load_dotenv
+from transformers import pipeline
+from huggingface_hub import login
 
+#loading environment variables
+load_dotenv()
+
+#passing api keys
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+HF_API_KEY = os.getenv("HF_API_KEY")
+
+if not OPENAI_API_KEY or not HF_API_KEY:
+    st.error("API keys are missing. Please check your .env file or environment variables.")
+
+#authenticate
+login(token=HF_API_KEY)
+
+#main page
 st.set_page_config(page_title="AI Chatbot", layout="wide")
-st.title("AI Chatbot with GPT Models")
+st.title("AI Chatbot with Multiple LLMs")
 
 #sidebar
-st.sidebar.header("Choose Your GPT Model")
-model_choice = st.sidebar.selectbox("Select a Model:", ["gpt-3.5-turbo", "gpt-4"])
+if st.sidebar.button("New Chat"):
+    st.session_state.messages = [{"role": "system", "content": "You are a helpful AI assistant."}]
+    st.rerun()
 
-#API key input
-openai_api_key = st.sidebar.text_input("Enter OpenAI API Key:", type="password")
+st.sidebar.header("Models")
+model_choice = st.sidebar.selectbox("Select a Model:", ["gpt-3.5-turbo", "gpt-4", "llama-3-1b"])
 
-#chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = [{"role": "system", "content": "You are a helpful assistant."}]
-
-#function to call OpenAI GPT API
-def chat_with_gpt():
-    if not openai_api_key:
-        return "Please provide an OpenAI API key."
+#calling OpenAI API
+def call_openai():
+    """Function to call OpenAI GPT models."""
     try:
-        client = openai.OpenAI(api_key=openai_api_key)
+        client = openai.OpenAI(api_key=OPENAI_API_KEY)
         response = client.chat.completions.create(
-            model=model_choice,
-            messages=st.session_state.messages  # Send full conversation history
+            model=model_choice, messages=st.session_state.messages
         )
         return response.choices[0].message.content
     except Exception as e:
         return f"Error: {str(e)}"
 
-#display chat history
-st.write("### Chat History:")
+#calling HF LLaMA 3 1B
+def call_huggingface_llama():
+    """Function to call Hugging Face LLaMA 3 1B model."""
+    try:
+        generator = pipeline("text-generation", model="meta-llama/Llama-3.2-1B")
+        response = generator(st.session_state.messages[-1]['content'], max_length=200)
+        return response[0]['generated_text']
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+#chat History
+if "messages" not in st.session_state:
+    st.session_state.messages = [{"role": "system", "content": "You are a helpful AI assistant."}]
+
+st.write("## Chat History:")
 for message in st.session_state.messages:
     if message["role"] != "system":
         with st.chat_message(message["role"]):
             st.write(message["content"])
 
-
+#give input
 user_input = st.chat_input("Type your message here...")
 
 if user_input:
-    #adding user msg to sessison state
     st.session_state.messages.append({"role": "user", "content": user_input})
-
-    #bot response
-    bot_response = chat_with_gpt()
-
-    #adding bot response to session state
+    
+    if model_choice in ["gpt-3.5-turbo", "gpt-4"]:
+        bot_response = call_openai()
+    else:
+        bot_response = call_huggingface_llama()
+    
     st.session_state.messages.append({"role": "assistant", "content": bot_response})
-
     st.rerun()

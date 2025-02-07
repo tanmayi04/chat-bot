@@ -1,5 +1,5 @@
 # chat-bot
-This is a simple AI-powered chatbot built using Streamlit and OpenAI's GPT models (gpt-3.5-turbo and gpt-4) and llama3-1B model. The chatbot allows users to interact with the AI and maintains chat history within the session.
+This is a simple AI-powered chatbot built using Streamlit, OpenAI's GPT models (gpt-3.5-turbo and gpt-4) and llama3-1B model. The chatbot allows users to interact with the AI and maintains chat history within the session.
 
 
 Technology Used:

@@ -33,8 +33,10 @@ Usage
 command- streamlit run chat.py
 
 Screenshots:
-<img width="957" alt="ss0" src="https://github.com/user-attachments/assets/7fde38d3-28cf-4817-bd3e-d315591a11b4" />
-<img width="959" alt="ss1" src="https://github.com/user-attachments/assets/4a21b24a-4aae-4322-a144-31dde5ecce22" />
-<img width="959" alt="ss2" src="https://github.com/user-attachments/assets/6526ce8c-c288-417d-9056-bda3bb418228" />
-<img width="959" alt="ss3" src="https://github.com/user-attachments/assets/b85523b4-e113-447a-8b2e-fb7f6daffcd7" />
+![Screenshot 2025-02-13 134656](https://github.com/user-attachments/assets/48499827-e95d-4584-b79e-7bb35eca34cb)
 
+![Screenshot 2025-02-13 134803](https://github.com/user-attachments/assets/c92ae6d0-cf18-4166-a4c7-c006ddc2dbfc)
+
+<img width="959" alt="Screenshot 2025-02-13 134948" src="https://github.com/user-attachments/assets/12f3ab03-f93f-4f62-ba78-bc6d30c0686b" />
+
+<img width="953" alt="Screenshot 2025-02-13 135147" src="https://github.com/user-attachments/assets/2a3bb741-708d-4299-b245-64c45ae50213" />
